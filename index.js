@@ -151,4 +151,41 @@ program
     });
   });
 
+  program
+  .command('copies')
+  .description('Показати примірники вибраної книги')
+  .argument('<id>', 'ID книги')
+  .option('-a, --available', 'Показати лише доступні примірники')
+  .action((id, options) => {
+    const data = readData();
+
+    const book = data.booksForReading.find(
+      (item) => item.id === id
+    );
+
+    if (!book) {
+      console.error(
+        `Помилка: книгу з ID "${id}" не знайдено.`
+      );
+      process.exit(1);
+    }
+
+    let copies = book.copies;
+
+    if (options.available) {
+      copies = copies.filter((copy) => copy.available);
+    }
+
+    if (copies.length === 0) {
+      console.log('Примірників, що відповідають умові, немає.');
+      return;
+    }
+
+    copies.forEach((copy) => {
+      console.log(
+        `${copy.number} — ${copy.available ? 'доступний' : 'недоступний'}`
+      );
+    });
+  });
+
 program.parse();
