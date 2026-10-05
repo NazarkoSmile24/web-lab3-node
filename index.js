@@ -123,4 +123,32 @@ program
     }
   });
 
+  program
+  .command('author')
+  .description('Знайти книги автора за частиною імені')
+  .argument('<name>', 'Частина імені автора')
+  .action((name) => {
+    const data = readData();
+    const search = name.toLowerCase();
+
+    const books = data.booksForReading.filter((book) =>
+      book.authors.some((author) =>
+        author.toLowerCase().includes(search)
+      )
+    );
+
+    if (books.length === 0) {
+      console.error(
+        `Помилка: книг автора за запитом "${name}" не знайдено.`
+      );
+      process.exit(1);
+    }
+
+    books.forEach((book) => {
+      console.log(
+        `${book.id}. ${book.name} — ${book.authors.join(', ')}`
+      );
+    });
+  });
+
 program.parse();
