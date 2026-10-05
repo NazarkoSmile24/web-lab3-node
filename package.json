@@ -1,0 +1,25 @@
+{
+  "name": "web-lab3-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+"scripts": {
+  "start": "node index.js"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NazarkoSmile24/web-lab3-node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/NazarkoSmile24/web-lab3-node/issues"
+  },
+  "homepage": "https://github.com/NazarkoSmile24/web-lab3-node#readme",
+  "dependencies": {
+    "commander": "^15.0.0"
+  },
+  "type": "module"
+}
