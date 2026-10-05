@@ -18,7 +18,9 @@ function readData() {
     const fileContent = fs.readFileSync(filePath, 'utf8');
     return JSON.parse(fileContent);
   } catch (error) {
-    console.error(`Помилка: не вдалося прочитати або розібрати файл "${filePath}".`);
+    console.error(
+      `Помилка: не вдалося прочитати або розібрати файл "${filePath}".`
+    );
     process.exit(1);
   }
 }
@@ -35,7 +37,9 @@ program
       const limit = Number(options.limit);
 
       if (!Number.isInteger(limit) || limit <= 0) {
-        console.error('Помилка: значення --limit має бути додатним цілим числом.');
+        console.error(
+          'Помилка: значення --limit має бути додатним цілим числом.'
+        );
         process.exit(1);
       }
 
@@ -43,8 +47,80 @@ program
     }
 
     books.forEach((book) => {
-      console.log(`${book.id}. ${book.name} — ${book.authors.join(', ')}`);
+      console.log(
+        `${book.id}. ${book.name} — ${book.authors.join(', ')}`
+      );
     });
+  });
+
+program
+  .command('show')
+  .description('Показати одну книгу повністю')
+  .argument('<id>', 'ID книги')
+  .action((id) => {
+    const data = readData();
+
+    const book = data.booksForReading.find(
+      (item) => item.id === id
+    );
+
+    if (!book) {
+      console.error(
+        `Помилка: книгу з ID "${id}" не знайдено.`
+      );
+      process.exit(1);
+    }
+
+    console.log(JSON.stringify(book, null, 2));
+  });
+
+program
+  .command('field')
+  .description('Показати значення окремого поля книги')
+  .argument('<id>', 'ID книги')
+  .argument(
+    '<path>',
+    'Шлях до поля, наприклад name або dateOfPublishing.part1'
+  )
+  .action((id, path) => {
+    const data = readData();
+
+    const book = data.booksForReading.find(
+      (item) => item.id === id
+    );
+
+    if (!book) {
+      console.error(
+        `Помилка: книгу з ID "${id}" не знайдено.`
+      );
+      process.exit(1);
+    }
+
+    const parts = path.split('.');
+    let value = book;
+
+    for (const part of parts) {
+      if (
+        value !== null &&
+        typeof value === 'object' &&
+        part in value
+      ) {
+        value = value[part];
+      } else {
+        console.error(
+          `Помилка: поле "${path}" не знайдено.`
+        );
+        process.exit(1);
+      }
+    }
+
+    if (value === null) {
+      console.log('null');
+    } else if (typeof value === 'object') {
+      console.log(JSON.stringify(value, null, 2));
+    } else {
+      console.log(value);
+    }
   });
 
 program.parse();
