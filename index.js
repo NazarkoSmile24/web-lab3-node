@@ -3,6 +3,29 @@ import fs from 'fs';
 
 const program = new Command();
 
+program.configureOutput({
+  outputError: (str, write) => {
+    let message = str;
+
+    message = message.replace(
+      /error: missing required argument '(.+)'/,
+      'Помилка: пропущено обов’язковий аргумент "$1".'
+    );
+
+    message = message.replace(
+      /error: unknown option '(.+)'/,
+      'Помилка: невідома опція "$1".'
+    );
+
+    message = message.replace(
+      /error: too many arguments for '(.+)'.*/,
+      'Помилка: передано забагато аргументів для команди "$1".'
+    );
+
+    write(message);
+  }
+});
+
 program
   .name('library-cli')
   .description('CLI-програма для роботи з бібліотечним каталогом')
