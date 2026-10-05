@@ -188,4 +188,52 @@ program
     });
   });
 
+  program
+  .command('history')
+  .description('Показати історію видач конкретного примірника')
+  .argument('<number>', 'Номер примірника книги')
+  .action((number) => {
+    const data = readData();
+
+    let foundCopy = null;
+    let foundBook = null;
+
+    for (const book of data.booksForReading) {
+      const copy = book.copies.find(
+        (item) => item.number === number
+      );
+
+      if (copy) {
+        foundCopy = copy;
+        foundBook = book;
+        break;
+      }
+    }
+
+    if (!foundCopy) {
+      console.error(
+        `Помилка: примірник з номером "${number}" не знайдено.`
+      );
+      process.exit(1);
+    }
+
+    console.log(`Книга: ${foundBook.name}`);
+    console.log(`Примірник: ${foundCopy.number}`);
+
+    if (foundCopy.loanHistory.length === 0) {
+      console.log('Історія видач порожня.');
+      return;
+    }
+
+    foundCopy.loanHistory.forEach((loan, index) => {
+      console.log(`\nВидача ${index + 1}:`);
+      console.log(`Читач: ${loan.borrowerName} ${loan.borrowerSurname}`);
+      console.log(`ID читача: ${loan.borrowerId}`);
+      console.log(`Дата видачі: ${loan.borrowDate}`);
+      console.log(
+        `Дата повернення: ${loan.returnDate === null ? 'ще не повернено' : loan.returnDate}`
+      );
+    });
+  });
+
 program.parse();
