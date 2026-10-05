@@ -1,0 +1,169 @@
+{
+  "libraryName": "Scientific Library of Ivan Franko National University of Lviv",
+  "booksForReading": [
+    {
+      "id": "1",
+      "name": "Don Quixote",
+      "authors": [
+        "Miguel de Cervantes"
+      ],
+      "dateOfPublishing": {
+        "part1": 1605,
+        "part2": 1615
+      },
+      "copies": [
+        {
+          "number": "book_1",
+          "available": false,
+          "loanHistory": [
+            {
+              "borrowerId": "20261415",
+              "borrowerName": "Anna",
+              "borrowerSurname": "Shevchenko",
+              "borrowDate": "2026-08-25",
+              "returnDate": null
+            }
+          ]
+        },
+        {
+          "number": "book_2",
+          "available": true,
+          "loanHistory": [
+            {
+              "borrowerId": "20261892",
+              "borrowerName": "Max",
+              "borrowerSurname": "Avramenko",
+              "borrowDate": "2026-07-07",
+              "returnDate": "2026-08-28"
+            }
+          ]
+        },
+        {
+          "number": "book_3",
+          "available": true,
+          "loanHistory": [
+            {
+              "borrowerId": "20265412",
+              "borrowerName": "Mark",
+              "borrowerSurname": "Chornyi",
+              "borrowDate": "2025-05-01",
+              "returnDate": "2025-06-01"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Journey to the West",
+      "authors": [
+        "Wu Cheng'en"
+      ],
+      "dateOfPublishing": {
+        "year": 1592
+      },
+      "copies": [
+        {
+          "number": "book_4",
+          "available": true,
+          "loanHistory": [
+            {
+              "borrowerId": "20260900",
+              "borrowerName": "Taras",
+              "borrowerSurname": "Bulba",
+              "borrowDate": "2026-03-04",
+              "returnDate": "2026-03-11"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "The Lord of the Rings",
+      "authors": [
+        "J. R. R. Tolkien"
+      ],
+      "dateOfPublishing": {
+        "part1": 1954,
+        "part2": 1954,
+        "part3": 1955
+      },
+      "copies": [
+        {
+          "number": "book_5",
+          "available": false,
+          "loanHistory": [
+            {
+              "borrowerId": "20263125",
+              "borrowerName": "Olena",
+              "borrowerSurname": "Koval",
+              "borrowDate": "2026-09-01",
+              "returnDate": null
+            }
+          ]
+        },
+        {
+          "number": "book_6",
+          "available": true,
+          "loanHistory": []
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Harry Potter and the Philosopher's Stone",
+      "authors": [
+        "J. K. Rowling"
+      ],
+      "dateOfPublishing": {
+        "year": 1997
+      },
+      "copies": [
+        {
+          "number": "book_7",
+          "available": true,
+          "loanHistory": [
+            {
+              "borrowerId": "20264578",
+              "borrowerName": "Sofia",
+              "borrowerSurname": "Melnyk",
+              "borrowDate": "2026-06-15",
+              "returnDate": "2026-07-01"
+            }
+          ]
+        },
+        {
+          "number": "book_8",
+          "available": true,
+          "loanHistory": []
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "The Little Prince",
+      "authors": [
+        "Antoine de Saint-Exupery"
+      ],
+      "dateOfPublishing": {
+        "year": 1943
+      },
+      "copies": [
+        {
+          "number": "book_9",
+          "available": false,
+          "loanHistory": [
+            {
+              "borrowerId": "20261098",
+              "borrowerName": "Andrii",
+              "borrowerSurname": "Bondarenko",
+              "borrowDate": "2026-08-30",
+              "returnDate": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
